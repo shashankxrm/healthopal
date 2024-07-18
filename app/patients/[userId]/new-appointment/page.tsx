@@ -1,9 +1,11 @@
 import Image from "next/image";
 
-import { AppointmentForm } from "@/components/forms/AppointmentForm";
-import { getPatient } from "@/lib/actions/patient.actions";
 
-const Appointment = async ({ params: { userId } }: SearchParamProps) => {
+import { getPatient } from "@/lib/actions/patient.actions";
+import AppointmentForm from "@/components/forms/AppointmentForm";
+
+export default async function NewAppointment({params: {userId}}: SearchParamProps)
+{
   const patient = await getPatient(userId);
 
   return (
@@ -39,4 +41,3 @@ const Appointment = async ({ params: { userId } }: SearchParamProps) => {
   );
 };
 
-export default Appointment;

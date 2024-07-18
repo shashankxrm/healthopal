@@ -22,7 +22,7 @@ import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
 
-export const AppointmentForm = ({
+const AppointmentForm = ({
   userId,
   patientId,
   type = "create",
@@ -53,9 +53,7 @@ export const AppointmentForm = ({
     },
   });
 
-  const onSubmit = async (
-    values: z.infer<typeof AppointmentFormValidation>
-  ) => {
+  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     setIsLoading(true);
 
     let status;
@@ -72,7 +70,7 @@ export const AppointmentForm = ({
 
     try {
       if (type === "create" && patientId) {
-        const appointment = {
+        const appointmentData = {
           userId,
           patient: patientId,
           primaryPhysician: values.primaryPhysician,
@@ -82,12 +80,12 @@ export const AppointmentForm = ({
           note: values.note,
         };
 
-        const newAppointment = await createAppointment(appointment);
+        const appointment = await createAppointment(appointmentData);
 
-        if (newAppointment) {
+        if (appointment) {
           form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
         }
       } else {
@@ -218,3 +216,4 @@ export const AppointmentForm = ({
     </Form>
   );
 };
+export default AppointmentForm;
