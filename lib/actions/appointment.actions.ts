@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { ID, Query } from "node-appwrite";
@@ -17,7 +17,6 @@ import { formatDateTime, parseStringify } from "../utils";
 export const createAppointment = async (
   appointment: CreateAppointmentParams
 ) => {
-    
   try {
     const newAppointment = await databases.createDocument(
       DATABASE_ID!,
