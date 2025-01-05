@@ -9,6 +9,9 @@ import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 const AdminPage = async () => {
   const appointments = await getRecentAppointmentList();
 
+  // Ensure appointments is not null and filter out any null values
+  const validAppointments = appointments?.filter((appointment: any) => appointment !== null) || [];
+
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header">
