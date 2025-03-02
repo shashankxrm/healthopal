@@ -4,7 +4,12 @@ import Link from "next/link";
 import { PatientForm } from "@/components/forms/PatientForm";
 import { PasskeyModal } from "@/components/PasskeyModal";
 
-const Home = ({ searchParams }: SearchParamProps) => {
+// Define the correct type for the page props
+type HomeProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
   const isAdmin = searchParams?.admin === "true";
 
   return (
@@ -15,8 +20,8 @@ const Home = ({ searchParams }: SearchParamProps) => {
         <div className="sub-container max-w-[496px]">
           <Image
             src="/assets/icons/logo-full.svg"
-            height={1000}
-            width={1000}
+            height={40}
+            width={162}
             alt="patient"
             className="mb-12 h-10 w-fit"
           />
@@ -36,7 +41,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
 
       <Image
         src="/assets/images/healthcare.jpeg"
-        height={1000}
+        height={500}
         width={1000}
         alt="patient"
         className="side-img max-w-[50%]"
