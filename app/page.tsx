@@ -5,8 +5,8 @@ import { PatientForm } from "@/components/forms/PatientForm";
 import { PasskeyModal } from "@/components/PasskeyModal";
 
 // Use the correct type for the page props
-const Home = async ({ searchParams }: { searchParams: URLSearchParams }) => {
-  const isAdmin = searchParams.get('admin') === "true";
+const Home = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
+  const isAdmin = searchParams.admin === "true";
 
   return (
     <div className="flex h-screen max-h-screen">
