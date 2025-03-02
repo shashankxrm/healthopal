@@ -4,13 +4,9 @@ import Link from "next/link";
 import { PatientForm } from "@/components/forms/PatientForm";
 import { PasskeyModal } from "@/components/PasskeyModal";
 
-// Define the correct type for the page props
-type HomeProps = {
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-const Home = async ({ searchParams }: HomeProps) => {
-  const isAdmin = searchParams?.admin === "true";
+// Use the correct type for the page props
+const Home = async ({ searchParams }: { searchParams: URLSearchParams }) => {
+  const isAdmin = searchParams.get('admin') === "true";
 
   return (
     <div className="flex h-screen max-h-screen">
