@@ -22,7 +22,7 @@ export const columns: ColumnDef<Appointment>[] = [
     header: "Patient",
     cell: ({ row }) => {
       const appointment = row.original;
-      return <p className="text-14-medium ">{appointment.patient.name}</p>;
+      return <p className="text-14-medium ">{appointment.patient?.name || "No patient name"}</p>;
     },
   },
   {
@@ -78,6 +78,10 @@ export const columns: ColumnDef<Appointment>[] = [
     header: () => <div className="pl-4">Actions</div>,
     cell: ({ row }) => {
       const appointment = row.original;
+
+      if (!appointment.patient) {
+        return <div className="text-sm text-red-500">Patient data missing</div>;
+      }
 
       return (
         <div className="flex gap-1">
